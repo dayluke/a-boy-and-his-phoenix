@@ -7,6 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public float xMovementMultiplier = 2f;
     public float yMovementMultiplier = 1f;
 
+    private void Start()
+    {
+        if (GameObject.FindWithTag("Respawn") != null)
+            transform.position = GameObject.FindWithTag("Respawn").transform.position;        
+    }
+
     public void AssignDelegate(InputHandler inputHandler)
     {
         inputHandler.onKeyPressed += KeyPressed;
