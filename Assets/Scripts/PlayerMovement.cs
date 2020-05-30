@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int numberOfMovesLeft = 10;
     public float xMovementMultiplier = 2f;
     public float yMovementMultiplier = 1f;
     public float transitionTime = 1f;
     private bool isMoving = false;
+    private bool isTouchingCollider = false;
 
     private void Start()
     {
@@ -22,14 +22,24 @@ public class PlayerMovement : MonoBehaviour
         inputHandler.onKeyPressed += KeyPressed;
     }
 
-    private void KeyPressed(Vector2 direction)
+    private async void KeyPressed(Vector2 direction)
     {
-        if (isMoving) return;
+        if (isMoving || numberOfMovesLeft <= 0) return;
         Vector3 scaledMovement = new Vector3(direction.x * xMovementMultiplier, direction.y * yMovementMultiplier, 0);
-        TransitionToCell(scaledMovement);
+        await TransitionToCell(scaledMovement);
+        
+        if (isTouchingCollider)
+        {
+            await TransitionToCell(-scaledMovement);
+            isTouchingCollider = false;
+        }
+        else
+        {
+            numberOfMovesLeft--;
+        }
     }
 
-    private async void TransitionToCell(Vector3 movement)
+    private async Task TransitionToCell(Vector3 movement)
     {
         isMoving = true;
         Vector3 originalPosition = transform.position;
@@ -40,5 +50,10 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.position = originalPosition + movement;
         isMoving = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isTouchingCollider = true;
     }
 }
