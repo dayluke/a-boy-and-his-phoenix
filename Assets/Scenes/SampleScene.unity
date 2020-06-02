@@ -586,18 +586,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputs:
-  - key: 119
-    direction: {x: 0, y: 1}
-  - key: 115
-    direction: {x: 0, y: -1}
-  - key: 97
-    direction: {x: -0.5, y: 0.5}
-  - key: 100
-    direction: {x: 0.5, y: 0.5}
-  fireAbilityKey: 101
-  tearAbilityKey: 113
-  playerMovement: {fileID: 2044531371}
-  playerAbility: {fileID: 2044531375}
+  - {fileID: 11400000, guid: 543a8fc9c47b5b54ea4d1153713614a8, type: 2}
+  - {fileID: 11400000, guid: b00a21e3c814a6e48905d99f4f544ca4, type: 2}
+  - {fileID: 11400000, guid: 5a05b189a4a02c640aaf717624fadc33, type: 2}
+  - {fileID: 11400000, guid: d34dd9f4efeef3440a84c44d6fc0fd04, type: 2}
+  - {fileID: 11400000, guid: 1ba41135637e8a341b422666fe4adc9f, type: 2}
+  - {fileID: 11400000, guid: 768735023af3dbd48b5b818a93df56c4, type: 2}
+  playerController: {fileID: 2044531376}
 --- !u!4 &208175744
 Transform:
   m_ObjectHideFlags: 0
@@ -2907,6 +2902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044531373}
   - component: {fileID: 2044531372}
+  - component: {fileID: 2044531376}
   - component: {fileID: 2044531371}
   - component: {fileID: 2044531375}
   - component: {fileID: 2044531374}
@@ -2929,6 +2925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05f6befbfd126641a7a59778cd0a296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfMovesLeft: 10
   xMovementMultiplier: 2
   yMovementMultiplier: 1
   transitionTime: 0.2
@@ -3034,3 +3031,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d3cea740943bb4dad2681799c23297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2044531376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044531370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5139df1f4fb911646ab165ba206159f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2044531371}
+  playerAbility: {fileID: 2044531375}

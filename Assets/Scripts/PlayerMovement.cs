@@ -17,12 +17,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = GameObject.FindWithTag("Respawn").transform.position;        
     }
 
-    public void AssignDelegate(InputHandler inputHandler)
-    {
-        inputHandler.onKeyPressed += KeyPressed;
-    }
-
-    private async void KeyPressed(Vector2 direction)
+    public async void KeyPressed(Vector2 direction)
     {
         if (isMoving || numberOfMovesLeft <= 0) return;
         Vector3 scaledMovement = new Vector3(direction.x * xMovementMultiplier, direction.y * yMovementMultiplier, 0);

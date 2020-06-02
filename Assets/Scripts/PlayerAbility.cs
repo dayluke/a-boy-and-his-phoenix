@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerAbility : MonoBehaviour
 {
-    public void AssignDelegate(InputHandler inputHandler)
+    public void ActivateAbility(AbilityType abilityType)
     {
-        inputHandler.onFireAbility += FireAbility;
-        inputHandler.onTearAbility += TearAbility;
+        if (abilityType == AbilityType.FIRE) FireAbility();
+        else if (abilityType == AbilityType.TEAR) TearAbility();
     }
 
     private void FireAbility()
@@ -19,4 +17,10 @@ public class PlayerAbility : MonoBehaviour
     {
         Debug.Log("TEAR");
     }
+}
+
+public enum AbilityType
+{
+    FIRE,
+    TEAR
 }
