@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,11 +9,12 @@ public class PlayerMovement : MonoBehaviour
     public float xMovementMultiplier = 2f;
     public float yMovementMultiplier = 1f;
     public float transitionTime = 1f;
+    public Text movesText;
     private bool isMoving = false;
     private bool isTouchingCollider = false;
-
     private void Start()
     {
+        movesText.text = numberOfMovesLeft.ToString();
         if (GameObject.FindWithTag("Respawn") != null)
             transform.position = GameObject.FindWithTag("Respawn").transform.position;        
     }
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             numberOfMovesLeft--;
+            movesText.text = numberOfMovesLeft.ToString();
         }
     }
 
