@@ -7,9 +7,12 @@ public class HighlightTile : MonoBehaviour
 {
     [Header("Tile Settings")]
     public Tilemap selectabletileMap;
+    public Tilemap riverTileMap;
+    public Tilemap groundTileMap;
     public TileBase treeTile;
     public TileBase treeStumpTile;
     public TileBase fallenLogTile;
+    public TileBase[] fallenLogTiles;
     
     [Header("Highlighted Tile Settings")]
     public Color highlightColor;
@@ -94,33 +97,62 @@ public class HighlightTile : MonoBehaviour
     {
         selectabletileMap.SetTile(currentTilePos, treeStumpTile);
 
-        Vector3Int dirToFall = Vector3Int.zero;
         Vector3Int playerCellPos = selectabletileMap.layoutGrid.WorldToCell(playerPos.position);
-
-        if (currentTilePos.x == playerCellPos.x)
-        {
-            if (currentTilePos.y > playerCellPos.y)
-            {
-                dirToFall = currentTilePos + Vector3Int.up; 
-            }
-            else
-            {
-                dirToFall = currentTilePos + Vector3Int.down; 
-            }
-        }
-        else if (currentTilePos.y == playerCellPos.y)
-        {
-            if (currentTilePos.x > playerCellPos.x)
-            {
-                dirToFall = currentTilePos + Vector3Int.right; 
-            }
-            else
-            {
-                dirToFall = currentTilePos + Vector3Int.left; 
-            }
-        }
+        Vector3Int dirToFall = DetermineDirectionToFall(playerCellPos);
 
         Debug.Log("TILE: " + currentTilePos + ", PLAYER: " + selectabletileMap.layoutGrid.WorldToCell(playerPos.position) + ", FALLEN: " + dirToFall);
         selectabletileMap.SetTile(dirToFall, fallenLogTile);
+
+        MakeGroundTileWalkable(dirToFall);
+    }
+
+    private Vector3Int DetermineDirectionToFall(Vector3Int player)
+    {
+        if (currentTilePos.x == player.x)
+        {
+            fallenLogTile = fallenLogTiles[0];
+            if (currentTilePos.y > player.y)
+            {
+                return currentTilePos + Vector3Int.up; 
+            }
+            else
+            {
+                return currentTilePos + Vector3Int.down; 
+            }
+        }
+        else if (currentTilePos.y == player.y)
+        {
+            fallenLogTile = fallenLogTiles[1];
+            if (currentTilePos.x > player.x)
+            {
+                return currentTilePos + Vector3Int.right; 
+            }
+            else
+            {
+                return currentTilePos + Vector3Int.left; 
+            }
+        }
+
+        throw new NullReferenceException();
+    }
+
+    private void MakeGroundTileWalkable(Vector3Int logTilePos)
+    {
+        Vector3 worldCellPos = selectabletileMap.layoutGrid.CellToWorld(logTilePos);
+        Vector3Int riverTilePos = groundTileMap.layoutGrid.WorldToCell(worldCellPos);
+        Vector3Int baseTilePos = groundTileMap.layoutGrid.WorldToCell(worldCellPos);
+
+        if (riverTileMap.HasTile(baseTilePos))
+        {
+            TileBase riverTile = riverTileMap.GetTile(riverTilePos);
+            if (debug) Debug.Log("There is a tile (" + riverTile.name + ") at: " + riverTilePos);
+
+            groundTileMap.SetTile(baseTilePos, riverTile);
+            riverTileMap.SetTile(riverTilePos, null);
+        }
+        else
+        {
+            Debug.Log("Error changing tile");
+        }
     }
 }

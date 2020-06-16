@@ -53,5 +53,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isTouchingCollider = true;
+        Debug.Log("Collided with " + collision.gameObject.name);
     }
 }
