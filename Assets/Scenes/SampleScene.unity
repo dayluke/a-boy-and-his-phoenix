@@ -301,10 +301,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileMap: {fileID: 1527848047}
+  treeTile: {fileID: 11400000, guid: 3849dc4da6c312c408ad1b1bd0ab3dd7, type: 2}
+  treeStumpTile: {fileID: 11400000, guid: 7ac874d1b493e164cbdbadc7c6cf8325, type: 2}
+  fallenLogTile: {fileID: 11400000, guid: bb86639d25aa35045b024a78ea9dc453, type: 2}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
-  debug: 0
   firePS: {fileID: 365661438637215577, guid: 766079fe2152aa348958201cf9df8672, type: 3}
   treeBurnTime: 3
+  playerPos: {fileID: 2044531373}
+  debug: 0
 --- !u!4 &288378384
 Transform:
   m_ObjectHideFlags: 0
