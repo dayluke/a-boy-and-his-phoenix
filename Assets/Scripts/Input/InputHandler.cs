@@ -6,15 +6,19 @@ public class InputHandler : MonoBehaviour
     [Header("Input")]
     public List<InputKey> inputs = new List<InputKey>();
     public PlayerController playerController;
+    public bool inputEnabled = false;
 
     private void Update()
     {
-        foreach (InputKey input in inputs)
+        if (!inputEnabled)
         {
-            if (Input.GetKeyDown(input.key))
+            foreach (InputKey input in inputs)
             {
-                input.MethodToInvoke(playerController);
-                break;
+                if (Input.GetKeyDown(input.key))
+                {
+                    input.MethodToInvoke(playerController);
+                    break;
+                }
             }
         }
     }

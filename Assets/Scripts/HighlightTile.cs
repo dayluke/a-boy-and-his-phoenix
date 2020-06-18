@@ -8,7 +8,8 @@ public class HighlightTile : MonoBehaviour
     [Header("Tile Settings")]
     public Tilemap selectabletileMap;
     public Tilemap riverTileMap;
-    public Tilemap groundTileMap;
+    public Tilemap noCollRiverTileMap;
+    public Tilemap noCollGroundTileMap;
     public TileBase treeTile;
     public TileBase treeStumpTile;
     public TileBase fallenLogTile;
@@ -64,6 +65,7 @@ public class HighlightTile : MonoBehaviour
                 else
                 {
                     Debug.Log("Player is not adjacent or on same axis as tile");
+                    Debug.Log("Player: " + playerCellPos + ", Cell: " + currentTilePos);
                 }
             }
         }
@@ -95,13 +97,14 @@ public class HighlightTile : MonoBehaviour
 
     private void ChangeTileSprite()
     {
-        selectabletileMap.SetTile(currentTilePos, treeStumpTile);
+        noCollGroundTileMap.SetTile(currentTilePos, treeStumpTile);
+        selectabletileMap.SetTile(currentTilePos, null);
 
         Vector3Int playerCellPos = selectabletileMap.layoutGrid.WorldToCell(playerPos.position);
         Vector3Int dirToFall = DetermineDirectionToFall(playerCellPos);
 
         Debug.Log("TILE: " + currentTilePos + ", PLAYER: " + selectabletileMap.layoutGrid.WorldToCell(playerPos.position) + ", FALLEN: " + dirToFall);
-        selectabletileMap.SetTile(dirToFall, fallenLogTile);
+        noCollGroundTileMap.SetTile(dirToFall, fallenLogTile);
 
         MakeGroundTileWalkable(dirToFall);
     }
@@ -139,15 +142,15 @@ public class HighlightTile : MonoBehaviour
     private void MakeGroundTileWalkable(Vector3Int logTilePos)
     {
         Vector3 worldCellPos = selectabletileMap.layoutGrid.CellToWorld(logTilePos);
-        Vector3Int riverTilePos = groundTileMap.layoutGrid.WorldToCell(worldCellPos);
-        Vector3Int baseTilePos = groundTileMap.layoutGrid.WorldToCell(worldCellPos);
+        Vector3Int riverTilePos = noCollRiverTileMap.layoutGrid.WorldToCell(worldCellPos);
+        Vector3Int baseTilePos = noCollRiverTileMap.layoutGrid.WorldToCell(worldCellPos);
 
         if (riverTileMap.HasTile(baseTilePos))
         {
             TileBase riverTile = riverTileMap.GetTile(riverTilePos);
             if (debug) Debug.Log("There is a tile (" + riverTile.name + ") at: " + riverTilePos);
 
-            groundTileMap.SetTile(baseTilePos, riverTile);
+            noCollRiverTileMap.SetTile(baseTilePos, riverTile);
             riverTileMap.SetTile(riverTilePos, null);
         }
         else
