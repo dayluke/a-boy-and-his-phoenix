@@ -12,6 +12,11 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) OnPauseClick();
     }
+
+    public void OnResetClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     
     #region settings-buttons
 
