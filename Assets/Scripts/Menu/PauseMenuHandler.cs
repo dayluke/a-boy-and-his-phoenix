@@ -22,22 +22,6 @@ public class PauseMenuHandler : MonoBehaviour
         if (!openPauseMenu) optionsMenu.SetActive(openPauseMenu);
 
         inputHandler.inputEnabled = !openPauseMenu;
-
-
-
-
-        /*
-        if (optionsMenu.activeInHierarchy)
-        {
-            optionsMenu.SetActive(!optionsMenu.activeInHierarchy);
-            inputHandler.inputEnabled = !optionsMenu.activeInHierarchy;
-            return;
-        }
-
-        bool openPauseMenu = !pauseMenu.activeInHierarchy;
-        inputHandler.inputEnabled = !openPauseMenu;
-        pauseMenu.SetActive(openPauseMenu);
-        */
     }
 
     public void OnOptionsClick()
