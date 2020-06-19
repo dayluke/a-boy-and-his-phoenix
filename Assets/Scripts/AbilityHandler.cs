@@ -3,21 +3,27 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class HighlightTile : MonoBehaviour
+public class AbilityHandler : MonoBehaviour
 {
     [Header("Tile Settings")]
-    public Tilemap selectabletileMap;
+    public Tilemap selectableTileMap;
     public Tilemap riverTileMap;
     public Tilemap noCollRiverTileMap;
     public Tilemap noCollGroundTileMap;
+
+    [Header("Burn Tile Settings")]
     public TileBase treeTile;
     public TileBase treeStumpTile;
     public TileBase fallenLogTile;
     public TileBase[] fallenLogTiles;
-    
+
+    [Header("Regen Tile Settings")]
+    public TileBase saplingTile;
+
     [Header("Highlighted Tile Settings")]
     public Color highlightColor;
     public GameObject firePS;
+    public GameObject growPS;
     public float treeBurnTime = 2f;
 
     [Header("Extra Settings")]
@@ -27,65 +33,69 @@ public class HighlightTile : MonoBehaviour
     private Vector3Int currentTilePos;
     private bool tileHighlighted = false;
 
-    /*
-    private void Start()
-    {
-        for (int x = -3; x < Screen.width; x++)
-        {
-            for (int y = -3; y < Screen.height; y++)
-            {
-                Vector3Int pos = new Vector3Int(x,y,0);
-                Vector3Int tilePos = tileMap.layoutGrid.WorldToCell(pos);
-                if (tileMap.HasTile(tilePos)) Debug.Log(tileMap.GetTile(tilePos).name + ", Tile: " + tilePos + ", World: " + pos);
-            }
-        }
-    }
-    */
-
     private void Update()
     {
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldPos.z = 0;
-        Vector3Int tilePos = selectabletileMap.layoutGrid.WorldToCell(worldPos);
+        Vector3Int tilePos = selectableTileMap.layoutGrid.WorldToCell(worldPos);
         
-        if (selectabletileMap.HasTile(tilePos))
+        if (selectableTileMap.HasTile(tilePos))
         {
-            if (debug) Debug.Log(selectabletileMap.GetTile(tilePos).name + ", Tile: " + tilePos + ", World: " + worldPos);
+            if (debug) Debug.Log(selectableTileMap.GetTile(tilePos).name + ", Tile: " + tilePos + ", World: " + worldPos);
+
+            if (tileHighlighted)
+            {
+                selectableTileMap.SetColor(currentTilePos, Color.white);
+                tileHighlighted = false;
+            }
 
             currentTilePos = tilePos;
-            ChangeTileColour();
+            HighlightTile();
 
-            if (Input.GetMouseButtonDown(0) && tileHighlighted && selectabletileMap.GetTile(currentTilePos) == treeTile)
+            if (tileHighlighted)
             {
-                Vector3Int playerCellPos = selectabletileMap.layoutGrid.WorldToCell(playerPos.position);
-                if (currentTilePos.x == playerCellPos.x || currentTilePos.y == playerCellPos.y)
+                if (Input.GetMouseButtonDown(0) && selectableTileMap.GetTile(currentTilePos) == treeTile)
                 {
-                    BurnTree(worldPos);
+                    Vector3Int playerCellPos = selectableTileMap.layoutGrid.WorldToCell(playerPos.position);
+                    if (currentTilePos.x == playerCellPos.x || currentTilePos.y == playerCellPos.y)
+                    {
+                        BurnTree(worldPos);
+                    }
+                    else
+                    {
+                        Debug.Log("Player is not adjacent or on same axis as tile");
+                        Debug.Log("Player: " + playerCellPos + ", Cell: " + currentTilePos);
+                    }
                 }
-                else
+                else if (Input.GetMouseButtonDown(1) && selectableTileMap.GetTile(currentTilePos) == saplingTile)
                 {
-                    Debug.Log("Player is not adjacent or on same axis as tile");
-                    Debug.Log("Player: " + playerCellPos + ", Cell: " + currentTilePos);
+                    GrowSapling(worldPos);
                 }
             }
+            
         }
         else
         {
             if (tileHighlighted)
             {
-                selectabletileMap.SetColor(currentTilePos, Color.white);
+                selectableTileMap.SetColor(currentTilePos, Color.white);
                 tileHighlighted = false;
             }
         }
 
     }
 
-    private void ChangeTileColour()
+    private void HighlightTile()
     {
-        selectabletileMap.SetTileFlags(currentTilePos, TileFlags.None);
-        selectabletileMap.SetColor(currentTilePos, highlightColor);
-        tileHighlighted = true;
+        if (!tileHighlighted)
+        {
+            selectableTileMap.SetTileFlags(currentTilePos, TileFlags.None);
+            selectableTileMap.SetColor(currentTilePos, highlightColor);
+            tileHighlighted = true;
+        }
     }
+
+    #region burn-ability
 
     private async void BurnTree(Vector3 pos)
     {
@@ -98,12 +108,12 @@ public class HighlightTile : MonoBehaviour
     private void ChangeTileSprite()
     {
         noCollGroundTileMap.SetTile(currentTilePos, treeStumpTile);
-        selectabletileMap.SetTile(currentTilePos, null);
+        selectableTileMap.SetTile(currentTilePos, null);
 
-        Vector3Int playerCellPos = selectabletileMap.layoutGrid.WorldToCell(playerPos.position);
+        Vector3Int playerCellPos = selectableTileMap.layoutGrid.WorldToCell(playerPos.position);
         Vector3Int dirToFall = DetermineDirectionToFall(playerCellPos);
 
-        Debug.Log("TILE: " + currentTilePos + ", PLAYER: " + selectabletileMap.layoutGrid.WorldToCell(playerPos.position) + ", FALLEN: " + dirToFall);
+        Debug.Log("TILE: " + currentTilePos + ", PLAYER: " + selectableTileMap.layoutGrid.WorldToCell(playerPos.position) + ", FALLEN: " + dirToFall);
         noCollGroundTileMap.SetTile(dirToFall, fallenLogTile);
 
         MakeGroundTileWalkable(dirToFall);
@@ -141,7 +151,7 @@ public class HighlightTile : MonoBehaviour
 
     private void MakeGroundTileWalkable(Vector3Int logTilePos)
     {
-        Vector3 worldCellPos = selectabletileMap.layoutGrid.CellToWorld(logTilePos);
+        Vector3 worldCellPos = selectableTileMap.layoutGrid.CellToWorld(logTilePos);
         Vector3Int riverTilePos = noCollRiverTileMap.layoutGrid.WorldToCell(worldCellPos);
         Vector3Int baseTilePos = noCollRiverTileMap.layoutGrid.WorldToCell(worldCellPos);
 
@@ -158,4 +168,18 @@ public class HighlightTile : MonoBehaviour
             Debug.Log("Error changing tile");
         }
     }
+
+    #endregion
+
+    #region regen-ability
+
+    private async void GrowSapling(Vector3 psPos)
+    {
+        GameObject particles = Instantiate(growPS, psPos, Quaternion.Euler(Vector3.left * 90f));
+        Destroy(particles, treeBurnTime);
+        await Task.Delay(TimeSpan.FromSeconds(treeBurnTime / 2f));
+        selectableTileMap.SetTile(currentTilePos, treeTile);
+    }
+
+    #endregion
 }
