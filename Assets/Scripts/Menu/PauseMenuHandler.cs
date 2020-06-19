@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuHandler : MonoBehaviour
@@ -7,6 +8,11 @@ public class PauseMenuHandler : MonoBehaviour
     public InputHandler inputHandler;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+
+    [Header("Audio Settings")]
+    public Image audioImage;
+    public Sprite unmuteSymbol;
+    public Sprite muteSymbol;
 
     private void Update()
     {
@@ -47,7 +53,20 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void OnAudioClick()
     {
+        GameObject music = GameObject.FindGameObjectWithTag("Music");
+        music.GetComponent<MusicHandler>().TogglePause();
 
+        // Change sprite icon
+        if (music.GetComponent<AudioSource>().isPlaying)
+        {
+            // change to playing
+            audioImage.sprite = unmuteSymbol;
+        }
+        else
+        {
+            // change to mute
+            audioImage.sprite = muteSymbol;
+        }
     }
 
     #endregion

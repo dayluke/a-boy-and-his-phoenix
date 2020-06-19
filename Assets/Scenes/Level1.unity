@@ -371,6 +371,9 @@ MonoBehaviour:
   inputHandler: {fileID: 1054938043}
   pauseMenu: {fileID: 1569658553}
   optionsMenu: {fileID: 883840405}
+  audioImage: {fileID: 1534203560}
+  unmuteSymbol: {fileID: 21300000, guid: 4487209fdda91154da619301adb9e6c4, type: 3}
+  muteSymbol: {fileID: 21300000, guid: 11e3d102a51b3e1409ff67d202690d8b, type: 3}
 --- !u!1 &253045467
 GameObject:
   m_ObjectHideFlags: 0

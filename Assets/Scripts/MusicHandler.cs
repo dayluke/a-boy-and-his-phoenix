@@ -7,6 +7,7 @@ public class MusicHandler : MonoBehaviour
     public AudioClip[] songsToPlay;
     private AudioSource audioSource;
     private int currSongIndex = 0;
+    private bool isPlaying = true;
 
     private static MusicHandler instance = null;
 
@@ -35,5 +36,13 @@ public class MusicHandler : MonoBehaviour
         currSongIndex++;
         if (currSongIndex > songsToPlay.Length - 1) currSongIndex = 0;
         PlayNextSong();
-    }    
+    }
+
+    public void TogglePause()
+    {
+        if (isPlaying) audioSource.Pause();
+        else audioSource.UnPause();
+
+        isPlaying = !isPlaying;
+    }
 }
