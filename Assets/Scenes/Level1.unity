@@ -780,6 +780,11 @@ PrefabInstance:
       propertyPath: movesText
       value: 
       objectReference: {fileID: 1224236369}
+    - target: {fileID: 5391491797924356827, guid: 350eadf8d9c808844a15904abb3eb9f4,
+        type: 3}
+      propertyPath: resetButton
+      value: 
+      objectReference: {fileID: 1006262882}
     - target: {fileID: 5391491797924356829, guid: 350eadf8d9c808844a15904abb3eb9f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4142,6 +4147,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4297788459968361152, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 130ff77371f56754595f4abcf84caf43, type: 3}
     - target: {fileID: 4297788459968361155, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f,
         type: 3}
       propertyPath: m_Name

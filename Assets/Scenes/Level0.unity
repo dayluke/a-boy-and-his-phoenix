@@ -4397,6 +4397,11 @@ PrefabInstance:
       propertyPath: movesText
       value: 
       objectReference: {fileID: 1224236369}
+    - target: {fileID: 5391491797924356827, guid: 350eadf8d9c808844a15904abb3eb9f4,
+        type: 3}
+      propertyPath: resetButton
+      value: 
+      objectReference: {fileID: 1006262882}
     - target: {fileID: 5391491797924356829, guid: 350eadf8d9c808844a15904abb3eb9f4,
         type: 3}
       propertyPath: m_LocalPosition.x

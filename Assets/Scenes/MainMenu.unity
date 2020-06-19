@@ -559,7 +559,7 @@ MonoBehaviour:
   levelScenes:
   - {fileID: 102900000, guid: e2942fa72c2b6554c8a1c77463f02115, type: 3}
   - {fileID: 102900000, guid: a0d8747741b9ebb4b99656b5d881da7c, type: 3}
-  levelSelectScene: {fileID: 0}
+  levelSelectScene: {fileID: 102900000, guid: ff417578ddcce884688464454b92f52f, type: 3}
 --- !u!4 &223415230
 Transform:
   m_ObjectHideFlags: 0

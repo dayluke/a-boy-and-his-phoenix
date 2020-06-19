@@ -50,8 +50,7 @@ public class MenuHandler : MonoBehaviour
     
     public void OnLevelsClick()
     {
-        //SceneManager.LoadScene(levelSelectScene);
-        throw new NotImplementedException();
+        SceneManager.LoadScene(levelSelectScene.name);
     }
 
     public void OnExitClick()
