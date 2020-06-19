@@ -867,18 +867,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 543079051}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &543079053 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5391491797924356800, guid: 350eadf8d9c808844a15904abb3eb9f4,
+--- !u!95 &543079053 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2234444893169522385, guid: 350eadf8d9c808844a15904abb3eb9f4,
     type: 3}
   m_PrefabInstance: {fileID: 543079051}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5139df1f4fb911646ab165ba206159f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &592460326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1431,11 @@ PrefabInstance:
       propertyPath: noCollGroundTileMap
       value: 
       objectReference: {fileID: 896889072}
+    - target: {fileID: 8173614903241727796, guid: 5bb171f7172f7634699b1097e15e6804,
+        type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 543079053}
     - target: {fileID: 8173614903241727797, guid: 5bb171f7172f7634699b1097e15e6804,
         type: 3}
       propertyPath: m_Name
@@ -2695,7 +2694,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 543079053}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8d0660fc30d6094bb8cc8bc8dc572f3, type: 3}
 --- !u!114 &1054938043 stripped
