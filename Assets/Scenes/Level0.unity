@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 288378384}
   - component: {fileID: 288378383}
   m_Layer: 0
-  m_Name: Highlighted Tile
+  m_Name: Ability Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502fd4e291518f74f9ca6f9ec7716c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectabletileMap: {fileID: 1527848047}
+  selectableTileMap: {fileID: 1527848047}
   riverTileMap: {fileID: 592460332}
   noCollRiverTileMap: {fileID: 2108275599}
   noCollGroundTileMap: {fileID: 896889072}
@@ -667,8 +667,10 @@ MonoBehaviour:
   fallenLogTiles:
   - {fileID: 11400000, guid: bb86639d25aa35045b024a78ea9dc453, type: 2}
   - {fileID: 11400000, guid: 7b71207d6121e29459634908d5a759d5, type: 2}
+  saplingTile: {fileID: 11400000, guid: 9978614751433f44c99a9cd636933e58, type: 2}
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   firePS: {fileID: 365661438637215577, guid: 766079fe2152aa348958201cf9df8672, type: 3}
+  growPS: {fileID: 7330481842955021614, guid: 6c64fb41002e9d8448553cae4a23b1fa, type: 3}
   treeBurnTime: 3
   playerPos: {fileID: 2044531373}
   debug: 0
