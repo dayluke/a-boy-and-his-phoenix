@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float xMovementMultiplier = 2f;
     public float yMovementMultiplier = 1f;
     public float transitionTime = 1f;
+    public Animator playerAnimator;
 
     [Header("Moves Text Settings")]
     public Text movesText;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 outOfMovesScale;
 
     private bool isMoving = false;
+    private bool isFacingRight = true;
     private bool isTouchingCollider = false;
     private void Start()
     {
@@ -51,6 +53,13 @@ public class PlayerMovement : MonoBehaviour
 
     private async Task TransitionToCell(Vector3 movement)
     {
+        if ((movement.x < 0 && isFacingRight) || (movement.x > 0 && !isFacingRight))
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(Vector3.up * 180);
+        }
+
+        playerAnimator.SetTrigger("isWalking");
         isMoving = true;
         Vector3 originalPosition = transform.position;
         for (float t = 0; t < transitionTime; t += Time.deltaTime)

@@ -4,8 +4,8 @@
 public class MoveKey : InputKey
 {
     public Vector2 direction;
-    public override void MethodToInvoke(PlayerController playerController)
+    public override void MethodToInvoke(PlayerMovement playerMovement)
     {
-        playerController.playerMovement.KeyPressed(direction);
+        playerMovement.KeyPressed(direction);
     }
 }

@@ -5,7 +5,7 @@ public class InputHandler : MonoBehaviour
 {
     [Header("Input")]
     public List<InputKey> inputs = new List<InputKey>();
-    public PlayerController playerController;
+    public PlayerMovement playerMovement;
     public bool inputEnabled = true;
 
     private void Update()
@@ -16,7 +16,7 @@ public class InputHandler : MonoBehaviour
             {
                 if (Input.GetKeyDown(input.key))
                 {
-                    input.MethodToInvoke(playerController);
+                    input.MethodToInvoke(playerMovement);
                     break;
                 }
             }

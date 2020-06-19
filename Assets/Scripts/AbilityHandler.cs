@@ -28,6 +28,7 @@ public class AbilityHandler : MonoBehaviour
 
     [Header("Extra Settings")]
     public Transform playerPos;
+    public Animator playerAnimator;
     public bool debug = false;
 
     private Vector3Int currentTilePos;
@@ -59,6 +60,7 @@ public class AbilityHandler : MonoBehaviour
                     Vector3Int playerCellPos = selectableTileMap.layoutGrid.WorldToCell(playerPos.position);
                     if (currentTilePos.x == playerCellPos.x || currentTilePos.y == playerCellPos.y)
                     {
+                        playerAnimator.SetTrigger("isBurningTree");
                         BurnTree(worldPos);
                     }
                     else
@@ -69,6 +71,7 @@ public class AbilityHandler : MonoBehaviour
                 }
                 else if (Input.GetMouseButtonDown(1) && selectableTileMap.GetTile(currentTilePos) == saplingTile)
                 {
+                    playerAnimator.SetTrigger("isGrowingTree");
                     GrowSapling(worldPos);
                 }
             }

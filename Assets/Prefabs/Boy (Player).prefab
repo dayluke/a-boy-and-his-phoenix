@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5391491797924356829}
   - component: {fileID: 5391491797924356828}
-  - component: {fileID: 5391491797924356800}
   - component: {fileID: 5391491797924356827}
-  - component: {fileID: 5391491797924356831}
   - component: {fileID: 5391491797924356830}
   - component: {fileID: 5391491797924356801}
+  - component: {fileID: 2234444893169522385}
   m_Layer: 0
   m_Name: Boy (Player)
   m_TagString: Player
@@ -76,7 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ff38b46e1ff832043b0747761c6bb3de, type: 3}
+  m_Sprite: {fileID: -2948514184157894059, guid: dd1a590c4938f2147a8bffd0c6f5b74d,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,20 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5391491797924356800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391491797924356826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5139df1f4fb911646ab165ba206159f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 5391491797924356827}
-  playerAbility: {fileID: 5391491797924356831}
 --- !u!114 &5391491797924356827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,23 +102,12 @@ MonoBehaviour:
   xMovementMultiplier: 2
   yMovementMultiplier: 1
   transitionTime: 0.2
+  playerAnimator: {fileID: 2234444893169522385}
   movesText: {fileID: 0}
   numberOfMovesLeft: 10
   outOfMovesColor: {r: 1, g: 0, b: 0, a: 1}
   resetButton: {fileID: 0}
   outOfMovesScale: {x: 1.25, y: 1.25, z: 1}
---- !u!114 &5391491797924356831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391491797924356826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d3cea740943bb4dad2681799c23297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5391491797924356830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,6 +155,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &2234444893169522385
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5391491797924356826}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 742a832c87b8d284e9d5ac9b72bb822f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5391491798058081951
 GameObject:
   m_ObjectHideFlags: 0
