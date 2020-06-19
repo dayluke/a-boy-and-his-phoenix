@@ -6,6 +6,22 @@ public class MenuHandler : MonoBehaviour
 {
     public UnityEngine.Object[] levelScenes;
     public UnityEngine.Object levelSelectScene;
+    private static MenuHandler instance = null;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void OnPlayClick()
     {        
@@ -18,8 +34,17 @@ public class MenuHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("CurrentLevel", currLevel);
         }
-        Debug.Log("Loading level " + currLevel);
-        SceneManager.LoadScene(levelScenes[currLevel].name);
+
+        try {
+            Debug.Log("Loading level " + currLevel);
+            SceneManager.LoadScene(levelScenes[currLevel].name);
+        }
+        catch (IndexOutOfRangeException e) {
+            Debug.LogWarning(e);
+            currLevel = 0;
+            PlayerPrefs.SetInt("CurrentLevel", currLevel);
+            SceneManager.LoadScene(levelScenes[0].name);
+        }
         
     }
     
