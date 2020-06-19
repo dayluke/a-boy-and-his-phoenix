@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songsToPlay:
   - {fileID: 8300000, guid: e34f4ebef76adce4491871c1730e3cdc, type: 3}
+  - {fileID: 8300000, guid: 3a08fdae44174e144bae151b751fffc1, type: 3}
+  - {fileID: 8300000, guid: 130ff77371f56754595f4abcf84caf43, type: 3}
 --- !u!82 &4297788459968361152
 AudioSource:
   m_ObjectHideFlags: 0
