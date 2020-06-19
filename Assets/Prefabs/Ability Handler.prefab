@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8173614903241727797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8173614903241727787}
+  - component: {fileID: 8173614903241727796}
+  m_Layer: 0
+  m_Name: Ability Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8173614903241727787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173614903241727797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8173614903241727796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8173614903241727797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502fd4e291518f74f9ca6f9ec7716c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectableTileMap: {fileID: 0}
+  riverTileMap: {fileID: 0}
+  noCollRiverTileMap: {fileID: 0}
+  noCollGroundTileMap: {fileID: 0}
+  treeTile: {fileID: 11400000, guid: 3849dc4da6c312c408ad1b1bd0ab3dd7, type: 2}
+  treeStumpTile: {fileID: 11400000, guid: 7ac874d1b493e164cbdbadc7c6cf8325, type: 2}
+  fallenLogTile: {fileID: 11400000, guid: bb86639d25aa35045b024a78ea9dc453, type: 2}
+  fallenLogTiles:
+  - {fileID: 11400000, guid: bb86639d25aa35045b024a78ea9dc453, type: 2}
+  - {fileID: 11400000, guid: 7b71207d6121e29459634908d5a759d5, type: 2}
+  saplingTile: {fileID: 11400000, guid: 9978614751433f44c99a9cd636933e58, type: 2}
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  firePS: {fileID: 365661438637215577, guid: 766079fe2152aa348958201cf9df8672, type: 3}
+  growPS: {fileID: 7330481842955021614, guid: 6c64fb41002e9d8448553cae4a23b1fa, type: 3}
+  treeBurnTime: 3
+  playerPos: {fileID: 0}
+  debug: 0
