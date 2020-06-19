@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int numberOfMovesLeft = 10;
     public float xMovementMultiplier = 2f;
     public float yMovementMultiplier = 1f;
     public float transitionTime = 1f;
+
+    [Header("Moves Text Settings")]
     public Text movesText;
+    public int numberOfMovesLeft = 10;
+    public Color outOfMovesColor;
+    public GameObject resetButton;
+    public Vector3 outOfMovesScale;
+
     private bool isMoving = false;
     private bool isTouchingCollider = false;
     private void Start()
@@ -21,7 +27,13 @@ public class PlayerMovement : MonoBehaviour
 
     public async void KeyPressed(Vector2 direction)
     {
-        if (isMoving || numberOfMovesLeft <= 0) return;
+        if (isMoving) return;
+        if (numberOfMovesLeft <= 0)
+        {
+            FlashMovesAndReset();
+            return;
+        }
+
         Vector3 scaledMovement = new Vector3(direction.x * xMovementMultiplier, direction.y * yMovementMultiplier, 0);
         await TransitionToCell(scaledMovement);
         
@@ -54,5 +66,26 @@ public class PlayerMovement : MonoBehaviour
     {
         isTouchingCollider = true;
         Debug.Log("Collided with " + collision.gameObject.name);
+    }
+
+    private async void FlashMovesAndReset()
+    {
+        float animTime = 0.35f; // for each flash
+        Color originalColor = movesText.color;
+        Vector3 originalScale = resetButton.transform.localScale;
+
+        for (int numberOfFlashes = 2; numberOfFlashes > 0; numberOfFlashes--)
+        {
+            for (float t = 0; t < animTime; t += Time.deltaTime)
+            {
+                float sinValue = Mathf.Sin(t * Mathf.PI / animTime);
+                movesText.color = (originalColor * (1 - sinValue)) + (outOfMovesColor * sinValue);
+                resetButton.transform.localScale = (originalScale * (1 - sinValue)) + (outOfMovesScale * sinValue);
+                await Task.Delay(TimeSpan.FromSeconds(Time.deltaTime));
+            }
+
+            movesText.color = originalColor;
+            resetButton.transform.localScale = originalScale;
+        }
     }
 }

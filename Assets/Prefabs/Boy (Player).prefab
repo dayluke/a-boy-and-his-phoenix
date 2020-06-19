@@ -113,11 +113,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05f6befbfd126641a7a59778cd0a296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfMovesLeft: 10
   xMovementMultiplier: 2
   yMovementMultiplier: 1
   transitionTime: 0.2
   movesText: {fileID: 0}
+  numberOfMovesLeft: 10
+  outOfMovesColor: {r: 1, g: 0, b: 0, a: 1}
+  resetButton: {fileID: 0}
+  outOfMovesScale: {x: 1.25, y: 1.25, z: 1}
 --- !u!114 &5391491797924356831
 MonoBehaviour:
   m_ObjectHideFlags: 0
