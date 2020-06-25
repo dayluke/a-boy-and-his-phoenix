@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -37,24 +36,25 @@ public class MenuHandler : MonoBehaviour
 
         try {
             Debug.Log("Loading level " + currLevel);
-            SceneManager.LoadScene(levelScenes[currLevel].name);
+            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, levelScenes[currLevel].name);
         }
         catch (IndexOutOfRangeException e) {
             Debug.LogWarning(e);
             currLevel = 0;
             PlayerPrefs.SetInt("CurrentLevel", currLevel);
-            SceneManager.LoadScene(levelScenes[0].name);
+            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, levelScenes[0].name);
         }
         
     }
     
     public void OnLevelsClick()
     {
-        SceneManager.LoadScene(levelSelectScene.name);
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, levelSelectScene.name);
     }
 
     public void OnExitClick()
     {
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade();
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
     #else

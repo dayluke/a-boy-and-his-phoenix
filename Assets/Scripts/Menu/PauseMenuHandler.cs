@@ -21,7 +21,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void OnResetClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, SceneManager.GetActiveScene().name);
     }
     
     #region settings-buttons
@@ -44,7 +44,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void OnExitClick()
     {
-        SceneManager.LoadScene(mainMenuScene.name);
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, mainMenuScene.name);
     }
 
     #endregion

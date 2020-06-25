@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GoalTrigger : MonoBehaviour
 {
@@ -19,13 +18,13 @@ public class GoalTrigger : MonoBehaviour
         }
         catch (NullReferenceException e) {
             Debug.LogWarning(e);
-            SceneManager.LoadScene(menuScene.name);
+            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, menuScene.name);
             return;
         }
 
         if (currLevel + 1 > menu.levelScenes.Length - 1)
         {
-            SceneManager.LoadScene(menuScene.name);
+            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, menuScene.name);
         }
         else 
         {

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelSelectHandler : MonoBehaviour
 {
@@ -9,11 +8,11 @@ public class LevelSelectHandler : MonoBehaviour
     {
         MenuHandler menu = GameObject.FindGameObjectWithTag("Menu").GetComponent<MenuHandler>();
         string sceneToLoad = menu.levelScenes[index].name;
-        SceneManager.LoadScene(sceneToLoad);
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, sceneToLoad);
     }
 
     public void OnBackClick()
     {
-        SceneManager.LoadScene(menuScene.name);
+        GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, menuScene.name);
     }
 }

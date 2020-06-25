@@ -57,17 +57,8 @@ public class AbilityHandler : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && selectableTileMap.GetTile(currentTilePos) == treeTile)
                 {
-                    Vector3Int playerCellPos = selectableTileMap.layoutGrid.WorldToCell(playerPos.position);
-                    if (currentTilePos.x == playerCellPos.x || currentTilePos.y == playerCellPos.y)
-                    {
-                        playerAnimator.SetTrigger("isBurningTree");
-                        BurnTree(worldPos);
-                    }
-                    else
-                    {
-                        Debug.Log("Player is not adjacent or on same axis as tile");
-                        Debug.Log("Player: " + playerCellPos + ", Cell: " + currentTilePos);
-                    }
+                    playerAnimator.SetTrigger("isBurningTree");
+                    BurnTree(worldPos);
                 }
                 else if (Input.GetMouseButtonDown(1) && selectableTileMap.GetTile(currentTilePos) == saplingTile)
                 {
@@ -124,32 +115,26 @@ public class AbilityHandler : MonoBehaviour
 
     private Vector3Int DetermineDirectionToFall(Vector3Int player)
     {
-        if (currentTilePos.x == player.x)
+        if (currentTilePos.y > player.y)
         {
             fallenLogTile = fallenLogTiles[0];
-            if (currentTilePos.y > player.y)
-            {
-                return currentTilePos + Vector3Int.up; 
-            }
-            else
-            {
-                return currentTilePos + Vector3Int.down; 
-            }
+            return currentTilePos + Vector3Int.up; 
         }
-        else if (currentTilePos.y == player.y)
+        else if (currentTilePos.y > player.y)
+        {
+            fallenLogTile = fallenLogTiles[0];
+            return currentTilePos + Vector3Int.down; 
+        }
+        else if (currentTilePos.x > player.x)
         {
             fallenLogTile = fallenLogTiles[1];
-            if (currentTilePos.x > player.x)
-            {
-                return currentTilePos + Vector3Int.right; 
-            }
-            else
-            {
-                return currentTilePos + Vector3Int.left; 
-            }
+            return currentTilePos + Vector3Int.right; 
         }
-
-        throw new NullReferenceException();
+        else
+        {
+            fallenLogTile = fallenLogTiles[1];
+            return currentTilePos + Vector3Int.left; 
+        }
     }
 
     private void MakeGroundTileWalkable(Vector3Int logTilePos)
