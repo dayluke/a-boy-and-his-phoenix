@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Menu
   - Music
+  - Fader
   layers:
   - Default
   - TransparentFX
