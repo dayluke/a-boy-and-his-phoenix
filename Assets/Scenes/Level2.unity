@@ -1908,6 +1908,11 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 543079053}
+    - target: {fileID: 8173614903241727796, guid: 5bb171f7172f7634699b1097e15e6804,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1752706021}
     - target: {fileID: 8173614903241727797, guid: 5bb171f7172f7634699b1097e15e6804,
         type: 3}
       propertyPath: m_Name
@@ -4531,6 +4536,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f, type: 3}
+--- !u!82 &1752706021 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4297788459968361152, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752706020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2108275596
 GameObject:
   m_ObjectHideFlags: 0

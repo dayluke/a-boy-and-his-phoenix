@@ -4363,6 +4363,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f, type: 3}
+--- !u!82 &4297788459081510691 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4297788459968361152, guid: 81328b37ef0f46c4c8044a7d8b2cbf7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4297788459081510690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4574220084890848386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4631,6 +4637,11 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 5391491799412617329}
+    - target: {fileID: 8173614903241727796, guid: 5bb171f7172f7634699b1097e15e6804,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 4297788459081510691}
     - target: {fileID: 8173614903241727797, guid: 5bb171f7172f7634699b1097e15e6804,
         type: 3}
       propertyPath: m_Name

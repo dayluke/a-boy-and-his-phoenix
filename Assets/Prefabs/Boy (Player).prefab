@@ -103,6 +103,7 @@ MonoBehaviour:
   yMovementMultiplier: 1
   transitionTime: 0.2
   playerAnimator: {fileID: 2234444893169522385}
+  walkSound: {fileID: 8300000, guid: 9b98c011a5802b9458595c4d973ebcf3, type: 3}
   movesText: {fileID: 0}
   numberOfMovesLeft: 10
   outOfMovesColor: {r: 1, g: 0, b: 0, a: 1}

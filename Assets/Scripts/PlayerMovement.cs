@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float yMovementMultiplier = 1f;
     public float transitionTime = 1f;
     public Animator playerAnimator;
+    public AudioClip walkSound;
 
     [Header("Moves Text Settings")]
     public Text movesText;
@@ -17,14 +18,18 @@ public class PlayerMovement : MonoBehaviour
     public GameObject resetButton;
     public Vector3 outOfMovesScale;
 
+    private AudioSource audioSource;
     private bool isMoving = false;
     private bool isFacingRight = true;
     private bool isTouchingCollider = false;
+
     private void Start()
     {
         movesText.text = numberOfMovesLeft.ToString();
         if (GameObject.FindWithTag("Respawn") != null)
             transform.position = GameObject.FindWithTag("Respawn").transform.position;        
+        
+        audioSource = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>();
     }
 
     public async void KeyPressed(Vector2 direction)
@@ -53,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     private async Task TransitionToCell(Vector3 movement)
     {
+        audioSource.PlayOneShot(walkSound);
+        
         if ((movement.x < 0 && isFacingRight) || (movement.x > 0 && !isFacingRight))
         {
             isFacingRight = !isFacingRight;

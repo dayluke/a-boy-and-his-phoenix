@@ -26,6 +26,11 @@ public class AbilityHandler : MonoBehaviour
     public GameObject growPS;
     public float treeBurnTime = 2f;
 
+    [Header("Audio Settings")]
+    public AudioClip fireSound;
+    public AudioClip regenSound;
+    private AudioSource audioSource;
+
     [Header("Extra Settings")]
     public Transform playerPos;
     public Animator playerAnimator;
@@ -33,6 +38,11 @@ public class AbilityHandler : MonoBehaviour
 
     private Vector3Int currentTilePos;
     private bool tileHighlighted = false;
+
+    private void Awake()
+    {
+        audioSource = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -59,11 +69,13 @@ public class AbilityHandler : MonoBehaviour
                 {
                     playerAnimator.SetTrigger("isBurningTree");
                     BurnTree(worldPos);
+                    audioSource.PlayOneShot(fireSound);
                 }
                 else if (Input.GetMouseButtonDown(1) && selectableTileMap.GetTile(currentTilePos) == saplingTile)
                 {
                     playerAnimator.SetTrigger("isGrowingTree");
                     GrowSapling(worldPos);
+                    audioSource.PlayOneShot(regenSound);
                 }
             }
             

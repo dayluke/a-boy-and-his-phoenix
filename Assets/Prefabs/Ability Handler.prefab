@@ -58,5 +58,9 @@ MonoBehaviour:
   firePS: {fileID: 365661438637215577, guid: 766079fe2152aa348958201cf9df8672, type: 3}
   growPS: {fileID: 7330481842955021614, guid: 6c64fb41002e9d8448553cae4a23b1fa, type: 3}
   treeBurnTime: 3
+  audioSource: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: f8660f7bed9461a40a0ec1c786a3f958, type: 3}
+  regenSound: {fileID: 8300000, guid: a65e783bd232bfb498ae5beb558597d1, type: 3}
   playerPos: {fileID: 0}
+  playerAnimator: {fileID: 0}
   debug: 0
