@@ -40,8 +40,16 @@ public class MusicHandler : MonoBehaviour
 
     public void TogglePause()
     {
-        if (isPlaying) audioSource.Pause();
-        else audioSource.UnPause();
+        if (isPlaying)
+        {
+            audioSource.Pause();
+            audioSource.volume = 0;
+        }
+        else 
+        {
+            audioSource.UnPause();
+            audioSource.volume = 1;
+        }
 
         isPlaying = !isPlaying;
     }

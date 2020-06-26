@@ -1,35 +1,38 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalTrigger : MonoBehaviour
 {
-    public UnityEngine.Object menuScene;
+    public AudioClip winSound;
+    public ScreenFader screenFader;
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.tag == "Player") Debug.Log("Player completed the level.");
 
         int currLevel = PlayerPrefs.GetInt("CurrentLevel");
-        
-        MenuHandler menu = null;
-        
-        try {
-            menu = GameObject.FindGameObjectWithTag("Menu").GetComponent<MenuHandler>();
-        }
-        catch (NullReferenceException e) {
-            Debug.LogWarning(e);
-            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, menuScene.name);
-            return;
-        }
+        GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>().PlayOneShot(winSound);
 
-        if (currLevel + 1 > menu.levelScenes.Length - 1)
+        if (currLevel + 2 > SceneManager.sceneCountInBuildSettings - 2)
         {
-            GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>().Fade(this, menuScene.name);
+            screenFader.Fade(this, 0);
         }
         else 
         {
-            PlayerPrefs.SetInt("CurrentLevel", currLevel + 1);
-            menu.OnPlayClick();
+            currLevel++;
+            PlayerPrefs.SetInt("CurrentLevel", currLevel);
+            
+            try {
+                Debug.Log("Loading level " + currLevel);
+                screenFader.Fade(this, currLevel + 2);
+            }
+            catch (IndexOutOfRangeException e) {
+                Debug.LogWarning(e);
+                currLevel = 0;
+                PlayerPrefs.SetInt("CurrentLevel", currLevel);
+                screenFader.Fade(this, 0);
+            }
         }
     }
 }
