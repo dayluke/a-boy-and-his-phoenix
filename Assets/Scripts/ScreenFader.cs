@@ -8,12 +8,12 @@ public class ScreenFader : MonoBehaviour
     public Animator animator;
 
     public void Fade() => animator.SetTrigger("fade");
-    public void Fade(MonoBehaviour instance, string sceneToLoad) => instance.StartCoroutine(Fade(sceneToLoad));
+    public void Fade(MonoBehaviour instance, int buildIndex) => instance.StartCoroutine(Fade(buildIndex));
 
-    private IEnumerator Fade(string sceneToLoad)
+    private IEnumerator Fade(int buildIndex)
     {
         animator.SetTrigger("fade");    
         yield return new WaitForSeconds(fadeTime);
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(buildIndex);
     }
 }

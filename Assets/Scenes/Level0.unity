@@ -443,6 +443,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02d60a4f11e53e54d928ebcaa85493bd, type: 3}
+--- !u!114 &29788181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4552944744891716243, guid: 02d60a4f11e53e54d928ebcaa85493bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 29788180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54308d965af024a40919e055cd0ffcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &98759748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3fd285469bc8d41bebea01e8da04f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuScene: {fileID: 102900000, guid: 1ef2454293a69314bba8aaeac22550b0, type: 3}
+  winSound: {fileID: 8300000, guid: 5a7a5f5948ddea640afc699c33607e4a, type: 3}
+  screenFader: {fileID: 29788181}
 --- !u!19719996 &891002231
 TilemapCollider2D:
   m_ObjectHideFlags: 0

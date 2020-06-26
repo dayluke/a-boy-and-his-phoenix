@@ -365,8 +365,8 @@ GameObject:
   - component: {fileID: 59104907}
   - component: {fileID: 59104909}
   - component: {fileID: 59104908}
-  - component: {fileID: 59104910}
   - component: {fileID: 59104911}
+  - component: {fileID: 59104910}
   m_Layer: 5
   m_Name: Level Select Button
   m_TagString: Untagged
@@ -414,8 +414,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 3
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    m_HighlightedColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -433,7 +433,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1948927022}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -456,7 +456,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59104906}
   m_CullTransparentMesh: 0
---- !u!95 &59104910
+--- !u!114 &59104910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59104906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a9f2260d8a0246932f4a59703a1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &59104911
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -475,18 +487,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &59104911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59104906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5a9f2260d8a0246932f4a59703a1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &157890017
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 223415229}
   m_Layer: 0
   m_Name: Menu Handler
-  m_TagString: Menu
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,14 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9a5cad7fa775641816f6895a298c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelScenes:
-  - {fileID: 102900000, guid: e2942fa72c2b6554c8a1c77463f02115, type: 3}
-  - {fileID: 102900000, guid: a0d8747741b9ebb4b99656b5d881da7c, type: 3}
-  - {fileID: 102900000, guid: 8b1b423404ece2c45b47b2fa17406d1d, type: 3}
-  - {fileID: 102900000, guid: 8db6b89e7250d3c418e87d3c3096a803, type: 3}
-  - {fileID: 102900000, guid: 8b0216c91b4235c4494b24ea6b018390, type: 3}
-  - {fileID: 102900000, guid: 7ec106f50b8ce1f409f68f8f8800b8b7, type: 3}
-  levelSelectScene: {fileID: 102900000, guid: ff417578ddcce884688464454b92f52f, type: 3}
+  screenFader: {fileID: 1944164718}
 --- !u!4 &223415230
 Transform:
   m_ObjectHideFlags: 0
@@ -1426,6 +1419,18 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1944164718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4552944744891716243, guid: 02d60a4f11e53e54d928ebcaa85493bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 3903479040676629889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54308d965af024a40919e055cd0ffcfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1948927020
 GameObject:
   m_ObjectHideFlags: 0
