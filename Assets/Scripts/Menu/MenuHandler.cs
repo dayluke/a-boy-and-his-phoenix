@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class MenuHandler : MonoBehaviour
 
     public void OnPlayClick()
     {
-        int currLevel = 0;
+        int currLevel = 2;
         if (PlayerPrefs.HasKey("CurrentLevel"))
         {
             currLevel = PlayerPrefs.GetInt("CurrentLevel");
@@ -17,15 +18,21 @@ public class MenuHandler : MonoBehaviour
             PlayerPrefs.SetInt("CurrentLevel", currLevel);
         }
 
+        if (currLevel >= SceneManager.sceneCountInBuildSettings - 1)
+        {
+            currLevel = 2;
+            PlayerPrefs.SetInt("CurrentLevel", currLevel);
+        }
+
         try {
             Debug.Log("Loading level " + currLevel);
-            screenFader.Fade(this, currLevel + 2);
+            screenFader.Fade(this, currLevel);
         }
-        catch (IndexOutOfRangeException e) {
+        catch (Exception e) {
             Debug.LogWarning(e);
-            currLevel = 0;
+            currLevel = 2;
             PlayerPrefs.SetInt("CurrentLevel", currLevel);
-            screenFader.Fade(this, currLevel + 2);
+            screenFader.Fade(this, currLevel);
         }
     }
     
