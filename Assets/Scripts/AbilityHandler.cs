@@ -46,7 +46,10 @@ public class AbilityHandler : MonoBehaviour
 
     private void Update()
     {
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.touchCount <= 0) return;
+        if (Input.GetTouch(0).phase != TouchPhase.Began) return;
+
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
         worldPos.z = 0;
         Vector3Int tilePos = selectableTileMap.layoutGrid.WorldToCell(worldPos);
         
@@ -65,13 +68,13 @@ public class AbilityHandler : MonoBehaviour
 
             if (tileHighlighted)
             {
-                if (Input.GetMouseButtonDown(0) && selectableTileMap.GetTile(currentTilePos) == treeTile)
+                if (selectableTileMap.GetTile(currentTilePos) == treeTile)
                 {
                     playerAnimator.SetTrigger("isBurningTree");
                     BurnTree(worldPos);
                     audioSource.PlayOneShot(fireSound);
                 }
-                else if (Input.GetMouseButtonDown(1) && selectableTileMap.GetTile(currentTilePos) == saplingTile)
+                else if (selectableTileMap.GetTile(currentTilePos) == saplingTile)
                 {
                     playerAnimator.SetTrigger("isGrowingTree");
                     GrowSapling(worldPos);
