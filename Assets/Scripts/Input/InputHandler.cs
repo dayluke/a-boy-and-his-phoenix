@@ -1,25 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
     [Header("Input")]
-    public List<InputKey> inputs = new List<InputKey>();
     public PlayerMovement playerMovement;
     public bool inputEnabled = true;
 
-    private void Update()
+    public void OnArrowPressed(string dir)
     {
-        if (inputEnabled)
-        {
-            foreach (InputKey input in inputs)
-            {
-                if (Input.GetKeyDown(input.key))
-                {
-                    input.MethodToInvoke(playerMovement);
-                    break;
-                }
-            }
-        }
+        string[] vectors = dir.Split(',');
+        if (inputEnabled) playerMovement.KeyPressed(new Vector2(float.Parse(vectors[0]), float.Parse(vectors[1])));
     }
 }
